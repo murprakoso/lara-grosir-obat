@@ -82,15 +82,15 @@ Route::group(['middleware' => 'auth'], function () {
     /*
      * Backup Restore Database Routes
      */
-    Route::post('backups/upload', ['as' => 'backups.upload', 'uses' => 'BackupsController@upload']);
-    Route::post('backups/{fileName}/restore', ['as' => 'backups.restore', 'uses' => 'BackupsController@restore']);
-    Route::get('backups/{fileName}/dl', ['as' => 'backups.download', 'uses' => 'BackupsController@download']);
-    Route::resource('backups', 'BackupsController', ['except' => ['create', 'show', 'edit']]);
+    // Route::post('backups/upload', ['as' => 'backups.upload', 'uses' => 'BackupsController@upload']);
+    // Route::post('backups/{fileName}/restore', ['as' => 'backups.restore', 'uses' => 'BackupsController@restore']);
+    // Route::get('backups/{fileName}/dl', ['as' => 'backups.download', 'uses' => 'BackupsController@download']);
+    // Route::resource('backups', 'BackupsController', ['except' => ['create', 'show', 'edit']]);
 
     /*
      * Log Viewer routes
      */
-    Route::get('log-files', ['as' => 'log-files.index', 'uses' => 'LogFilesController@index']);
-    Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => 'LogFilesController@show']);
-    Route::get('log-files/{filename}/download', ['as' => 'log-files.download', 'uses' => 'LogFilesController@download']);
+    // Route::get('log-files', ['as' => 'log-files.index', 'uses' => 'LogFilesController@index']);
+    // Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => 'LogFilesController@show']);
+    // Route::get('log-files/{filename}/download', ['as' => 'log-files.download', 'uses' => 'LogFilesController@download']);
 });
