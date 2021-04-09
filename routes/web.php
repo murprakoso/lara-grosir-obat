@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products', 'ProductsController', ['except' => ['create', 'show', 'edit']]);
     Route::post('products/import', 'ProductsController@import')->name('products.import');
     Route::get('format-import-products', 'ProductsController@getDownload')->name('format-import');
+    Route::post('products/deletes', 'ProductsController@deleteMultiple')->name('product.deletes');
 
     /*
      * Units Routes

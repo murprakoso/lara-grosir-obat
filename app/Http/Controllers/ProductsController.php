@@ -111,4 +111,21 @@ class ProductsController extends Controller
         // $pdf = \PDF::loadView('products.price-list', compact('products'));
         // return $pdf->stream('price-list.pdf');
     }
+
+
+    public function deleteMultiple(Request $request)
+    {
+        try {
+            Product::whereIn('id', $request->id)->delete();
+
+            flash(trans('product.deleted'), 'success');
+
+            return redirect()->route('products.index');
+        } catch (\Throwable $th) {
+
+            flash(trans('product.undeleted'), 'danger');
+
+            return redirect()->route('products.index');
+        }
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 14 Feb 2021 pada 19.35
+-- Waktu pembuatan: 09 Apr 2021 pada 20.48
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.4.14
 
@@ -38,10 +38,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2017_04_09_013901_create_products_table', 1),
-(3, '2017_04_27_121204_create_transactions_table', 1),
-(4, '2017_05_02_211915_create_product_units_table', 1);
+(9, '2014_10_12_000000_create_users_table', 1),
+(10, '2017_04_09_013901_create_products_table', 1),
+(11, '2017_04_27_121204_create_transactions_table', 1),
+(12, '2017_05_02_211915_create_product_units_table', 1);
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,6 @@ CREATE TABLE `products` (
   `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `unit_id` int(10) UNSIGNED NOT NULL,
   `cash_price` int(10) UNSIGNED NOT NULL,
-  `credit_price` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -63,11 +62,16 @@ CREATE TABLE `products` (
 -- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `unit_id`, `cash_price`, `credit_price`, `created_at`, `updated_at`) VALUES
-(2, 'Absolute 150ml', 1, 21200, 23100, '2021-02-13 16:01:34', '2021-02-13 16:01:34'),
-(3, 'Absolute 60ml', 1, 10500, 12000, '2021-02-13 16:02:43', '2021-02-13 16:02:56'),
-(4, 'Adem Sari', 4, 38500, 40000, '2021-02-13 16:03:44', '2021-02-13 16:03:44'),
-(6, 'Absolute 150ml', 1, 21200, 23100, '2021-02-14 19:33:10', '2021-02-14 19:33:10');
+INSERT INTO `products` (`id`, `name`, `unit_id`, `cash_price`, `created_at`, `updated_at`) VALUES
+(72, 'Adem Sari Ching Ku Sachet 7 Gr', 8, 3000, '2021-04-09 19:39:09', '2021-04-09 19:39:09'),
+(74, 'Liquid Oatdrips Banana', 3, 3000, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(75, 'Adem Sari', 3, 5000, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(76, 'Shampo metal', 3, 2500, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(77, 'Liquid Oatdrips Banana', 3, 3000, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(78, 'Adem Sari', 3, 5000, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(79, 'Shampo metal', 3, 2500, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(80, 'Liquid Oatdrips Banana', 3, 3000, '2021-04-09 19:39:23', '2021-04-09 19:39:23'),
+(81, 'Adem Sari', 3, 5000, '2021-04-09 19:39:23', '2021-04-09 19:39:23');
 
 -- --------------------------------------------------------
 
@@ -87,14 +91,14 @@ CREATE TABLE `product_units` (
 --
 
 INSERT INTO `product_units` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Botol', '2021-02-13 09:16:48', '2021-02-13 15:59:43'),
-(2, 'Tube', '2021-02-13 09:16:55', '2021-02-13 15:59:51'),
-(4, 'Renteng', '2021-02-13 16:00:31', '2021-02-13 16:00:31'),
-(5, 'Box', '2021-02-14 19:31:14', '2021-02-14 19:31:14'),
-(6, 'Kaleng', '2021-02-14 19:31:18', '2021-02-14 19:31:18'),
-(7, 'Keping', '2021-02-14 19:31:23', '2021-02-14 19:31:23'),
-(8, 'Pak', '2021-02-14 19:31:37', '2021-02-14 19:31:37'),
-(9, 'Pcs', '2021-02-14 19:31:42', '2021-02-14 19:31:42');
+(1, 'Botol', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(2, 'Tube', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(3, 'Renteng', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(4, 'Box', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(5, 'Kaleng', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(6, 'Keping', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(7, 'Pak', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(8, 'Pcs', '2021-04-09 04:14:25', '2021-04-09 04:14:25');
 
 -- --------------------------------------------------------
 
@@ -120,10 +124,9 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `invoice_no`, `items`, `customer`, `payment`, `total`, `notes`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '21020001', '[{\"id\":1,\"name\":\"Karyn Church\",\"unit\":\"Paracetamol\",\"price\":200000,\"qty\":\"1\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":200000}]', '{\"name\":\"Prakoso\",\"phone\":\"080808089898\"}', 200000, 200000, NULL, 1, '2021-02-13 09:22:02', '2021-02-13 09:22:02'),
-(2, '21020002', '[{\"id\":5,\"name\":\"Paracetamol\",\"unit\":\"Renteng\",\"price\":10000,\"qty\":\"1\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":10000}]', '{\"name\":\"Iavong\",\"phone\":null}', 10000, 10000, NULL, 1, '2021-02-14 13:03:44', '2021-02-14 13:03:44'),
-(3, '21020003', '[{\"id\":4,\"name\":\"Adem Sari\",\"unit\":\"Renteng\",\"price\":38500,\"qty\":\"1\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":38500}]', '{\"name\":\"Prakoso\",\"phone\":null}', 50000, 38500, NULL, 1, '2021-02-14 13:05:43', '2021-02-14 13:05:43'),
-(4, '21020004', '[{\"id\":4,\"name\":\"Adem Sari\",\"unit\":\"Renteng\",\"price\":40000,\"qty\":\"3\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":120000}]', '{\"name\":\"Ronal\",\"phone\":null}', 120000, 120000, NULL, 1, '2021-02-14 16:11:52', '2021-02-14 16:11:52');
+(1, '21040001', '[{\"id\":4,\"name\":\"Herrod Randolph\",\"unit\":\"Tube\",\"price\":605,\"qty\":\"3\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":1815}]', '{\"name\":\"-\",\"phone\":\"+1 (286) 172-5132\"}', 20000, 1815, 'Nihil sit asperiore', 1, '2021-04-09 04:25:22', '2021-04-09 04:25:22'),
+(2, '21040002', '[{\"id\":64,\"name\":\"Liquid Oatdrips Banana\",\"unit\":\"Pcs\",\"price\":3000,\"qty\":\"2\",\"item_discount\":1000,\"item_discount_subtotal\":2000,\"subtotal\":6000}]', '{\"name\":\"-\",\"phone\":\"+1 (286) 172-5132\"}', 10000, 4000, NULL, 1, '2021-04-09 12:01:03', '2021-04-09 12:01:03'),
+(3, '21040003', '[{\"id\":76,\"name\":\"Shampo metal\",\"unit\":\"Renteng\",\"price\":2500,\"qty\":\"2\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":5000},{\"id\":72,\"name\":\"Adem Sari Ching Ku Sachet 7 Gr\",\"unit\":\"Pcs\",\"price\":3000,\"qty\":\"1\",\"item_discount\":0,\"item_discount_subtotal\":0,\"subtotal\":3000}]', '{\"name\":\"Iavong\",\"phone\":\"+1 (286) 172-5132\"}', 20000, 8000, '-', 1, '2021-04-09 19:43:34', '2021-04-09 19:43:34');
 
 -- --------------------------------------------------------
 
@@ -146,8 +149,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$PLLTkvqEL.9L6maQJWp/J.Y6uxqZCHpmLA/UC9cyseEksAnWFeJTK', '1NsjbqYdb1il5OSTTeqfJr5QxwkGB0u1Rm0sa7tsgmkue3EfXzRQlbj2NA3n', '2021-02-13 09:13:58', '2021-02-13 09:24:28'),
-(2, 'Kasir', 'kasir', '$2y$10$mObfhK.wx5CkZqNGrHy5aOo/TlXLOy9wAsUzD4cvqgKatExOEYGD2', NULL, '2021-02-13 09:24:49', '2021-02-13 09:24:49');
+(1, 'Administrator', 'admin', '$2y$10$uMAh78OOYpv8jluQBniyUOeE8.cqA/THUEZsn3EmjqW5CsKA8nIPO', '43ihVh6PQp6ZNol5zj9QbdnUbRE18I06zZEyNBPC6bXWGhM0nYtiwQuaTjgy', '2021-04-09 04:14:25', '2021-04-09 04:14:25'),
+(2, 'Rashad Rhodes', 'kasir', '$2y$10$dbpJXaM5zsT/Z0H390VyZOOwntI.FjLuW3DaA2IcOYJdFlCla3HVK', NULL, '2021-04-09 12:04:17', '2021-04-09 12:04:17');
 
 --
 -- Indexes for dumped tables
@@ -193,13 +196,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_units`
@@ -211,7 +214,7 @@ ALTER TABLE `product_units`
 -- AUTO_INCREMENT untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

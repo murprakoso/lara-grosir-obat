@@ -17,12 +17,21 @@
         <div class="col-md-8">
             <div class="panel panel-default table-responsive">
                 <div class="panel-heading">
+
                     {{ Form::open(['method' => 'get', 'class' => 'form-inline']) }}
                     {!! FormField::text('q', ['value' => request('q'), 'label' => __('product.search'), 'class' => 'input-sm']) !!}
                     {{ Form::submit(__('product.search'), ['class' => 'btn btn-sm']) }}
                     {{ link_to_route('products.index', __('app.reset')) }}
+                    <span id="del-selected"> |
+                        <a href="javascript:void(0);" class="text-danger" id="btn-delete"> Delete Selected</a>
+                    </span>
                     {{ Form::close() }}
                 </div>
+
+                <form action="{{ route('product.deletes') }}" method="post" id="form-delete">
+                    @csrf
+                </form>
+
                 <table class="table table-condensed">
                     <thead>
                         <tr>
@@ -31,6 +40,9 @@
                             <th>{{ __('product.unit') }}</th>
                             <th class="text-right">{{ __('product.cash_price') }}</th>
                             <th class="text-center">{{ __('app.action') }}</th>
+                            <th class="text-center">
+                                <input id="check-all" type="checkbox">
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +57,10 @@
                                     {!! link_to_route('products.index', __('app.edit'), ['action' => 'edit', 'id' => $product->id] + request(['page', 'q']), ['id' => 'edit-product-' . $product->id]) !!} |
                                     {!! link_to_route('products.index', __('app.delete'), ['action' => 'delete', 'id' => $product->id] + request(['page', 'q']), ['id' => 'del-product-' . $product->id]) !!}
                                 </td>
+                                <td class="text-center">
+                                    <input class="check" type="checkbox" form="form-delete" name="id[]"
+                                        value="{{ $product->id }}">
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -57,3 +73,26 @@
         </div>
     </div>
 @endsection
+
+@push('ext_js')
+    <script>
+        $(function() {
+            $('#check-all').on('click', function() {
+                if (this.checked) {
+                    $('.check').prop("checked", true);
+                } else {
+                    $('.check').prop("checked", false);
+                }
+            })
+
+            $("#btn-delete").click(function() { // Ketika user mengklik tombol delete
+                var confirm = window.confirm(
+                    "Are you sure to delete this selected data?"); // Buat sebuah alert konfirmasi
+
+                if (confirm) // Jika user mengklik tombol "Ok"
+                    $("#form-delete").submit(); // Submit form
+            });
+        })
+
+    </script>
+@endpush
