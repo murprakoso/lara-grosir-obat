@@ -13,7 +13,7 @@ class ProductsController extends Controller
         $q = $request->get('q');
         $products = Product::where(function ($query) use ($q) {
             if ($q) {
-                $query->where('name', 'like', '%'.$q.'%');
+                $query->where('name', 'like', '%' . $q . '%');
             }
         })
             ->orderBy('name')
@@ -32,7 +32,7 @@ class ProductsController extends Controller
         $newProduct = $request->validate([
             'name'         => 'required|max:20',
             'cash_price'   => 'required|numeric',
-            'credit_price' => 'nullable|numeric',
+            // 'credit_price' => 'nullable|numeric',
             'unit_id'      => 'required|numeric|exists:product_units,id',
         ]);
 
@@ -48,7 +48,7 @@ class ProductsController extends Controller
         $productData = $request->validate([
             'name'         => 'required|max:20',
             'cash_price'   => 'required|numeric',
-            'credit_price' => 'nullable|numeric',
+            // 'credit_price' => 'nullable|numeric',
             'unit_id'      => 'required|numeric|exists:product_units,id',
         ]);
 

@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'name'           => 'Administrator',
             'username'       => 'admin',
-            'password'       => 'secret',
+            'password'       => 'password',
             'remember_token' => str_random(10),
         ]);
     }
