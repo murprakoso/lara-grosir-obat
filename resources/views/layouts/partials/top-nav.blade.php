@@ -38,8 +38,8 @@
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-default navbar-btn" name="create-cash-draft"
                                 id="cash-draft-create-button" value="{{ trans('transaction.create_cash') }}">
-                            <input type="submit" class="btn btn-default navbar-btn" name="create-credit-draft"
-                                id="credit-draft-create-button" value="{{ trans('transaction.create_credit') }}">
+                            {{-- <input type="submit" class="btn btn-default navbar-btn" name="create-credit-draft"
+                                id="credit-draft-create-button" value="{{ trans('transaction.create_credit') }}"> --}}
                         </form>
                     </li>
                     <li class="dropdown">
