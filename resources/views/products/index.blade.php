@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="pull-right">
-        {{ link_to_route('products.price-list', __('product.print_price_list'), [], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('products.price-list', __('product.print_price_list'), [], ['class' => 'btn btn-info', 'target' => '_blank']) }}
         {{ link_to_route('products.index', __('product.create'), ['action' => 'create'], ['class' => 'btn btn-success']) }}
+        {{ link_to_route('products.index', __('product.import'), ['action' => 'import'], ['class' => 'btn btn-primary']) }}
     </div>
     <h3 class="page-header">
         {{ __('product.list') }}

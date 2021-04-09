@@ -19,7 +19,9 @@ return [
 
     // Actions
     'create'         => 'Input Produk Baru',
+    'import'         => 'Import Product',
     'created'        => 'Input Produk baru telah berhasil.',
+    'imported'       => 'Import Produk baru telah berhasil.',
     'show'           => 'Detail Produk',
     'edit'           => 'Edit Produk',
     'update'         => 'Update Produk',
@@ -32,6 +34,7 @@ return [
 
     // Attributes
     'name'         => 'Nama Produk',
+    'file'         => 'File',
     'cash_price'   => 'Harga Tunai',
     'credit_price' => 'Harga Kredit',
 ];

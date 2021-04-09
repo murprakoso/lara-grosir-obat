@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,14 +16,17 @@
     {{ Html::style('css/plugins/bootstrap-theme.min.css') }}
     @yield('ext_css')
     {{ Html::style(url('css/app.custom.css')) }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+
     </script>
 </head>
+
 <body>
     @include('layouts.partials.top-nav')
     <div class="container">
@@ -36,8 +40,10 @@
     {{ Html::script(url('js/plugins/bootstrap.min.js')) }}
     @stack('ext_js')
     <script>
-    $('div.notifier').not('.alert-important').delay(5000).fadeOut(350);
+        $('div.notifier').not('.alert-important').delay(5000).fadeOut(350);
+
     </script>
     @yield('script')
 </body>
+
 </html>

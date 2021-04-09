@@ -13,7 +13,8 @@
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",
         "league/flysystem": "^1.0",
-        "luthfi/formfield": "^1.0"
+        "luthfi/formfield": "^1.0",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "laravel/browser-kit-testing": "^5.0",

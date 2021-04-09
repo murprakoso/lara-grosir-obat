@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductImport;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller
 {
@@ -42,6 +45,25 @@ class ProductsController extends Controller
 
         return redirect()->route('products.index');
     }
+
+
+    public function import(Request $request)
+    {
+        Excel::import(new ProductImport, request()->file('file'));
+
+        flash(trans('product.imported'), 'success');
+
+        return redirect()->route('products.index');
+    }
+
+
+    public function getDownload()
+    {
+        $file = public_path() . "/imports/Products.xlsx";
+        $headers = array('Content-Type: application/xlsx',);
+        return Response::download($file, 'Products.xlsx', $headers);
+    }
+
 
     public function update(Request $request, Product $product)
     {

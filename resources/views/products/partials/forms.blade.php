@@ -10,6 +10,20 @@
     {{ link_to_route('products.index', __('app.cancel'), [], ['class' => 'btn btn-default']) }}
     {!! Form::close() !!}
 @endif
+@if (Request::get('action') == 'import')
+    <span>Format import
+        <a href="{{ route('format-import') }}"> download <i class="fa fa-download"></i></a>
+    </span><br>
+    {!! Form::open(['route' => 'products.import', 'files' => true]) !!}
+    {!! FormField::select('unit_id', $unit->pluck('name', 'id'), ['label' => __('product.unit'), 'required' => true]) !!}
+    <div class="form-group required ">
+        <label for="file" class="control-label">{{ __('product.file') }}</label>&nbsp;
+        {!! Form::file('file', ['class' => 'form-control', 'required' => true, 'accept' => '.xlsx,.xls']) !!}
+    </div>
+    {!! Form::submit(__('product.import'), ['class' => 'btn btn-primary']) !!}
+    {{ link_to_route('products.index', __('app.cancel'), [], ['class' => 'btn btn-default']) }}
+    {!! Form::close() !!}
+@endif
 @if (Request::get('action') == 'edit' && $editableProduct)
     {!! Form::model($editableProduct, ['route' => ['products.update', $editableProduct->id], 'method' => 'patch']) !!}
     {!! FormField::text('name', ['label' => __('product.name'), 'required' => true]) !!}
@@ -47,28 +61,13 @@
                         <th>{{ __('product.cash_price') }}</th>
                         <td>{{ format_rp($editableProduct->cash_price) }}</td>
                     </tr>
-                    <tr>
-                        <th>{{ __('product.credit_price') }}</th>
-                        <td>{{ format_rp($editableProduct->credit_price) }}</td>
-                    </tr>
                 </tbody>
             </table>
             <hr>
             {{ __('product.delete_confirm') }}
         </div>
         <div class="panel-footer">
-            {!! FormField::delete(
-    ['route' => ['products.destroy', $editableProduct->id]],
-    __('app.delete_confirm_button'),
-    [
-        'class' => 'btn btn-danger',
-    ],
-    [
-        'product_id' => $editableProduct->id,
-        'page' => request('page'),
-        'q' => request('q'),
-    ],
-) !!}
+            {!! FormField::delete(['route' => ['products.destroy', $editableProduct->id]], __('app.delete_confirm_button'), ['class' => 'btn btn-danger'], ['product_id' => $editableProduct->id, 'page' => request('page'), 'q' => request('q')]) !!}
             {{ link_to_route('products.index', __('app.cancel'), Request::only('q'), ['class' => 'btn btn-default']) }}
         </div>
     </div>

@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
      */
     Route::get('products/price-list', ['as' => 'products.price-list', 'uses' => 'ProductsController@priceList']);
     Route::resource('products', 'ProductsController', ['except' => ['create', 'show', 'edit']]);
+    Route::post('products/import', 'ProductsController@import')->name('products.import');
+    Route::get('format-import-products', 'ProductsController@getDownload')->name('format-import');
 
     /*
      * Units Routes
