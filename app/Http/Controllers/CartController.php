@@ -39,7 +39,7 @@ class CartController extends Controller
         $queriedProducts = [];
         if ($query) {
             $queriedProducts = Product::where(function ($q) use ($query) {
-                $q->where('name', 'like', '%'.$query.'%');
+                $q->where('name', 'like', '%' . $query . '%');
             })->with('unit')->get();
         }
 
@@ -63,7 +63,7 @@ class CartController extends Controller
         $this->cart->addItemToDraft($draftKey, $item);
 
         flash(trans('cart.item_added', [
-            'product_name' => $product->name.' ('.$product->unit->name.')',
+            'product_name' => $product->name . ' (' . $product->unit->name . ')',
             'qty'          => $request->qty,
         ]));
 
@@ -122,11 +122,11 @@ class CartController extends Controller
             'customer.name'  => 'required|string|max:30',
             'customer.phone' => 'nullable|string|max:20',
             'total'          => 'required|numeric',
-            'payment'        => 'required|numeric|min:'.$request->get('total').'|max:'.($request->get('total') + 100000),
+            'payment'        => 'required|numeric|min:' . $request->get('total') . '|max:' . ($request->get('total') + 100000),
             'notes'          => 'nullable|string|max:100',
         ], [
-            'payment.min' => 'Pembayaran minimal '.format_rp($request->get('total')).'.',
-            'payment.max' => 'Pembayaran terlalu besar '.format_rp($request->get('payment')).'.',
+            'payment.min' => 'Pembayaran minimal ' . format_rp($request->get('total')) . '.',
+            'payment.max' => 'Pembayaran terlalu besar ' . format_rp($request->get('payment')) . '.',
         ]);
         $draft = $this->cart->updateDraftAttributes($draftKey, $request->only('customer', 'notes', 'payment'));
 
